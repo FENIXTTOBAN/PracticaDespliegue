@@ -1,12 +1,259 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ricardo Daniel — Líder Técnico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #080c10;
+            --surface: #0e1420;
+            --accent: #00e5ff;
+            --accent2: #7b2fff;
+            --text: #e8edf5;
+            --muted: #5a6478;
+        }
+
+        *, *::before, *::after {
+            margin: 0; padding: 0; box-sizing: border-box;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Animated background grid */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0,229,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,229,255,0.04) 1px, transparent 1px);
+            background-size: 48px 48px;
+            animation: gridShift 20s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes gridShift {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(48px); }
+        }
+
+        /* Glowing orbs */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.18;
+            pointer-events: none;
+            animation: pulse 8s ease-in-out infinite;
+        }
+        .orb1 {
+            width: 500px; height: 500px;
+            background: var(--accent2);
+            top: -150px; left: -150px;
+            animation-delay: 0s;
+        }
+        .orb2 {
+            width: 400px; height: 400px;
+            background: var(--accent);
+            bottom: -100px; right: -100px;
+            animation-delay: 4s;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 0.18; }
+            50% { transform: scale(1.1); opacity: 0.25; }
+        }
+
+        /* Card */
+        .card {
+            position: relative;
+            background: var(--surface);
+            border: 1px solid rgba(0,229,255,0.15);
+            border-radius: 24px;
+            padding: 64px 72px;
+            max-width: 720px;
+            width: 90%;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            box-shadow:
+                0 0 60px rgba(0,229,255,0.06),
+                0 40px 80px rgba(0,0,0,0.6);
+            animation: fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) both;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Top badge */
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,229,255,0.08);
+            border: 1px solid rgba(0,229,255,0.25);
+            border-radius: 100px;
+            padding: 6px 18px;
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 40px;
+            animation: fadeUp 0.9s 0.15s cubic-bezier(0.22,1,0.36,1) both;
+        }
+
+        .badge::before {
+            content: '';
+            width: 7px; height: 7px;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 8px var(--accent);
+            animation: blink 2s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        /* Avatar */
+        .avatar {
+            width: 100px; height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 32px;
+            background: linear-gradient(135deg, var(--accent2), var(--accent));
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 38px;
+            letter-spacing: 2px;
+            color: var(--bg);
+            box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px rgba(0,229,255,0.4);
+            animation: fadeUp 0.9s 0.25s cubic-bezier(0.22,1,0.36,1) both;
+        }
+
+        /* Greeting */
+        .greeting {
+            font-size: 13px;
+            color: var(--muted);
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            animation: fadeUp 0.9s 0.35s cubic-bezier(0.22,1,0.36,1) both;
+        }
+
+        /* Main headline */
+        h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(52px, 8vw, 80px);
+            line-height: 0.95;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            animation: fadeUp 0.9s 0.45s cubic-bezier(0.22,1,0.36,1) both;
+        }
+
+        h1 span {
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Role */
+        .role {
+            font-size: 18px;
+            font-weight: 300;
+            color: var(--muted);
+            margin-bottom: 48px;
+            animation: fadeUp 0.9s 0.55s cubic-bezier(0.22,1,0.36,1) both;
+        }
+
+        .role strong {
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        /* Divider */
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--accent), var(--accent2));
+            margin: 0 auto 48px;
+            border-radius: 2px;
+            animation: fadeUp 0.9s 0.6s cubic-bezier(0.22,1,0.36,1) both;
+        }
+
+        /* Skills */
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            animation: fadeUp 0.9s 0.7s cubic-bezier(0.22,1,0.36,1) both;
+        }
+
+        .skill {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px;
+            padding: 8px 16px;
+            font-size: 13px;
+            color: var(--muted);
+            transition: all 0.25s;
+            cursor: default;
+        }
+
+        .skill:hover {
+            border-color: rgba(0,229,255,0.35);
+            color: var(--accent);
+            background: rgba(0,229,255,0.06);
+            transform: translateY(-2px);
+        }
+
+        /* Corner accents */
+        .card::after {
+            content: '';
+            position: absolute;
+            top: -1px; right: 40px;
+            width: 80px; height: 3px;
+            background: linear-gradient(90deg, var(--accent2), var(--accent));
+            border-radius: 0 0 4px 4px;
+        }
+    </style>
 </head>
 <body>
-        <h1>Chau</h1>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, voluptate.</p>
+
+    <div class="orb orb1"></div>
+    <div class="orb orb2"></div>
+
+    <div class="card">
+        <div class="badge">Disponible para grandes proyectos</div>
+        <div class="avatar">RD</div>
+        <p class="greeting">Hola, soy</p>
+        <h1>Ricardo<br><span>Daniel</span></h1>
+        <p class="role">Soy el <strong>Líder Técnico</strong> de tu equipo</p>
+        <div class="divider"></div>
+        <div class="skills">
+            <span class="skill">Arquitectura de Software</span>
+            <span class="skill">Liderazgo de Equipos</span>
+            <span class="skill">DevOps</span>
+            <span class="skill">APIs & Microservicios</span>
+            <span class="skill">Code Review</span>
+            <span class="skill">Visión Estratégica</span>
+        </div>
+    </div>
+
 </body>
 </html>
